@@ -1,10 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoEntry from "./components/TodoEntry";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 export default function TodoApp() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useLocalStorage("todos", []);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Ensure the component renders on the client-side
+  }, []);
+
+  // Prevent rendering before the component mounts on the client
+  if (!isClient) return null;
 
   const addTodo = (newTodo) => {
     setTodos([...todos, newTodo]);
@@ -20,7 +29,7 @@ export default function TodoApp() {
         <h1 className="text-4xl font-bold inline-block">Simple ToDo</h1>
       </div>
 
-      <div className="todo-list w-72 mx-auto mb-4 bg-white rounded-lg">
+      <div className="todo-list overflow-y-scroll scrollbar-thin scrollbar-track-slate-300 scrollbar-thumb-black h-80 w-72 mx-auto mb-4 bg-white rounded-lg scrollbar-thumb-rounded-full">
         <ul>
           {todos.map((todo, index) => (
             <TodoEntry
@@ -35,7 +44,7 @@ export default function TodoApp() {
 
       <div className="input-wrapper flex justify-center">
         <input
-        className="rounded"
+          className="rounded-lg border-gray-300 focus:border-blue-500 p-2.5"
           type="text"
           placeholder="Add a todo"
           onKeyDown={(e) => {
@@ -45,6 +54,20 @@ export default function TodoApp() {
             }
           }}
         />
+
+        <button
+          className="rounded bg-blue-700 text-white px-3"
+          onClick={() => {
+            const input = document.querySelector('input[type="text"]');
+            const value = input.value.trim();
+            if (value !== "") {
+              addTodo(value);
+              input.value = "";
+            }
+          }}
+        >
+          Add
+        </button>
       </div>
     </div>
   );
