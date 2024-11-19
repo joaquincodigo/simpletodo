@@ -22,9 +22,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-blue-400`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-[#8EC5FC] to-[#E0C3FC] bg-no-repeat min-h-screen bg-cover`}
       >
+        <div className="flex items-center justify-center w-screen h-screen">
         {children}
+        </div>
       </body>
     </html>
   );

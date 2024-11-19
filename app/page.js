@@ -29,7 +29,7 @@ export default function TodoApp() {
         <h1 className="text-4xl font-bold inline-block">Simple ToDo</h1>
       </div>
 
-      <div className="todo-list overflow-y-scroll scrollbar-thin scrollbar-track-slate-300 scrollbar-thumb-black h-80 w-72 mx-auto mb-4 bg-white rounded-lg scrollbar-thumb-rounded-full">
+      <div className="todo-list overflow-y-scroll scrollbar-thin  scrollbar-track-transparent scrollbar-thumb-slate-500 h-80 w-72 mx-auto mb-4 bg-white bg-opacity-20 rounded-lg scrollbar-thumb-rounded-full p-3">
         <ul>
           {todos.map((todo, index) => (
             <TodoEntry
@@ -44,7 +44,7 @@ export default function TodoApp() {
 
       <div className="input-wrapper flex justify-center">
         <input
-          className="rounded-lg border-gray-300 focus:border-blue-500 p-2.5"
+          className="rounded-l-lg border-gray-300 focus:border-blue-500 p-2.5"
           type="text"
           placeholder="Add a todo"
           onKeyDown={(e) => {
@@ -56,7 +56,7 @@ export default function TodoApp() {
         />
 
         <button
-          className="rounded bg-blue-700 text-white px-3"
+          className="rounded-r-lg bg-blue-700 text-white px-3"
           onClick={() => {
             const input = document.querySelector('input[type="text"]');
             const value = input.value.trim();
