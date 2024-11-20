@@ -1,10 +1,9 @@
 'use client'
-import react from 'react'
 
 export default function todoentry({ todo, index, removeTodo }) {
 	return (
     <li key={index}>
-      <div className='bg-slate-100 min-h-14 p-3 flex flex-row items-center mb-3 rounded-xl'>
+      <div className='bg-slate-100 min-h-14 p-3 flex flex-row items-center mb-3 rounded-xl border-2 border-slate-100  hover:border-white'>
 
         <div className='flex-[7] overflow-hidden whitespace-normal break-words'>
           {todo} 
