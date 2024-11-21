@@ -23,33 +23,51 @@ export default function TodoApp() {
     setTodos(todos.filter((_, i) => i !== index));
   };
 
+  const toggleTodo = (index) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index].completed = !updatedTodos[index].completed;
+    setTodos(updatedTodos);
+  };
+
   return (
     <div>
+
       <div className="title-wrapper text-center mb-4">
         <h1 className="text-4xl font-semibold inline-block">Simple Tasker</h1>
       </div>
-
       <div className="todo-list shadow-lg overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-500 h-80 w-72 mx-auto mb-5 bg-white bg-opacity-20 rounded-lg scrollbar-thumb-rounded-full p-3">
-        <ul>
-          {todos.map((todo, index) => (
-            <TodoEntry
-              key={index}
-              todo={todo}
-              index={index}
-              removeTodo={removeTodo}
-            />
-          ))}
-        </ul>
+        {todos.length === 0 ? (
+          <div className="flex flex-col items-center justify-center pb-20 h-full text-slate-700 opacity-50">
+            <p className="tWrite-center">Add a new task</p>
+            <p className="text-center">and start planning your day.</p>
+          </div>
+        ) : (
+          <ul>
+            {todos
+              .sort((a, b) => a.completed - b.completed) // Sort by completion status
+              .map((todo, index) => (
+                <TodoEntry
+                  key={index}
+                  todo={todo.text}
+                  completed={todo.completed}
+                  index={index}
+                  removeTodo={removeTodo}
+                  toggleTodo={toggleTodo}
+                />
+              ))}
+          </ul>
+        )}
       </div>
 
       <div className="input-wrapper  flex justify-center">
         <input
           className="rounded-l-lg border-gray-300 w-56 p-2.5"
           type="text"
-          placeholder="Add a new task"
+          placeholder="Write a new task"
           onKeyDown={(e) => {
-            if (e.key === "Enter" && e.target.value.trim() !== "") {
-              addTodo(e.target.value.trim());
+            const value = e.target.value.trim();
+            if (e.key === "Enter" && value !== "") {
+              addTodo({ text: value, completed: false });
               e.target.value = "";
             }
           }}
@@ -61,7 +79,7 @@ export default function TodoApp() {
             const input = document.querySelector('input[type="text"]');
             const value = input.value.trim();
             if (value !== "") {
-              addTodo(value);
+              addTodo({ text: value, completed: false });
               input.value = "";
             }
           }}
