@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import TodoEntry from "./components/TodoEntry";
+
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import TodoEntry from "./components/TodoEntry";
+import NewTaskInput from "./components/NewTaskInput";
 
 export default function TodoApp() {
   const [todos, setTodos] = useLocalStorage("todos", []);
@@ -33,7 +35,7 @@ export default function TodoApp() {
     <div>
 
       <div className="title-wrapper text-center mb-4">
-        <h1 className="text-4xl font-semibold inline-block">Simple Tasker</h1>
+        <h1 className="text-4xl font-semibold inline-block text-slate-800">Simple Tasker</h1>
       </div>
       <div className="todo-list shadow-lg overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-500 h-80 w-72 mx-auto mb-5 bg-white bg-opacity-20 rounded-lg scrollbar-thumb-rounded-full p-3">
         {todos.length === 0 ? (
@@ -86,7 +88,9 @@ export default function TodoApp() {
         >
           Add
         </button>
+      
       </div>
+      <NewTaskInput addTodo={addTodo} />
     </div>
   );
 }
