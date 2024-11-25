@@ -4,7 +4,10 @@ const nextConfig = {
   output: "export",
   reactStrictMode: true,
   images: {
-    unoptimized: true, 
+    unoptimized: true,
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: "/simpletodo",
   },
 };
 
