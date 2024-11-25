@@ -1,5 +1,10 @@
 "use client";
 
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
+const basePath = publicRuntimeConfig.basePath || "";
+
+
 export default function todoentry({
   todo,
   completed,
@@ -41,7 +46,7 @@ export default function todoentry({
           className="hover:bg-slate-200 ml-2 rounded-full p-1 aspect-square flex-[1] flex items-center justify-center"
         >
           <img
-            src="/images/icons/trashcan-icon.svg"
+            src={`${basePath}/images/icons/trashcan-icon.svg`}
             alt="icon"
             className="w-4 h-4"
           />
