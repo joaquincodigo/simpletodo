@@ -11,6 +11,9 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ["Gantari", "sans-serif"], // Replace 'Gantari' with your chosen font
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
