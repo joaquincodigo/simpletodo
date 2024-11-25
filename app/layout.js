@@ -1,14 +1,13 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Simple Todo",
+  title: "Simple Tasker",
   description: "A clean ToDo App",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
