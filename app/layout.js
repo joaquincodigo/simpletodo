@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
           "font-sans bg-gradient-to-br from-[#8EC5FC] to-[#E0C3FC] bg-no-repeat min-h-screen bg-cover"
         }
       >
-        <div className="flex justify-center w-screen">
+        <div className="flex justify-center w-screen md:h-screen md:items md:items-center">
           {children}
         </div>
       </body>
